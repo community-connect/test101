@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bike</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <link rel="stylesheet" href="car.css">  
+</head>
+<body>
+
+    <div class="container mt-5 mb-5">
+
+        <div class="container-fluid">
+          <div class="row mt-5 mb-1 bg-light p-1">
+    
+            <div class="col-lg-5  d-none d-lg-block">
+              <h2>cart</h2>
+            </div>
+    
+            <div class="col-2 p-0 m-0 col-lg-1">
+    
+            </div>
+    
+            <div class="col-2 p-0 m-0 col-lg-1">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  sort
+                </button>
+                <select class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="ddlViewBy" onclick="getSld()"
+                  ng-model="seletedFilter">
+                  <option class="dropdown-item" ng-repeat="x in filterDropDown" value="{{x.option}}">{{x.option}}</option>
+                </select>
+                <!--  <p>You selected: {{seletedFilter}}</p> -->
+              </div>
+            </div>
+    
+    
+            <div class="col-2 p-0 m-0 col-lg-1">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dpb" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="true">
+                  limit
+                </button>
+                <select class="dropdown-menu" aria-labelledby="dpb" ng-model="seletedlim">
+                  <option class="dropdown-item" ng-repeat="x in filterDisplay" value="{{x.option}}">{{x.option}}</option>
+                </select>
+                <!-- <p>You selected: {{seletedlim}}</p> -->
+              </div>
+            </div>
+    
+    
+            <div class="col-6 p-0 m-0 col-md-4">
+              <div class="input-group rounded">
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                  aria-describedby="search-addon" ng-model="search" />
+                <span class="input-group-text border-0 changePointer" id="search-addon">
+                  <i class="fas fa-search"></i>
+                </span>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+    
+    
+        <div class="container-fluid ">
+          <div class="row mt-0 mb-5 bg-light p-1 justify-content-center justify-content-lg-end">
+    
+    
+            <div class="col-3 p-0 m-0 col-lg-2  d-flex justify-content-center">
+    
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="yrsel" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="true">
+                year
+              </button>
+              <select class="dropdown-menu  " aria-labelledby="yrsel" ng-model="selectYear">
+                <option class="dropdown-item" ng-repeat="b in year" value="{{b.option}}">{{b.option}}</option>
+              </select>
+            </div>
+    
+    
+            <div class="col-3 p-0 m-0 col-lg-2 d-flex justify-content-center">
+              <div class="dropdown ">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="currencysel" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="true">
+                  Currency
+                </button>
+                <select class="dropdown-menu" aria-labelledby="currencysel" ng-model="currencySelector">
+                  <option class="dropdown-item" ng-repeat="c in currency" value="{{c.option}}">{{c.option}}</option>
+                </select>
+                <!-- <p>You selected: {{currencySelector}}</p> -->
+              </div>
+            </div>
+    
+            <div class="col-3 p-0 m-0 col-lg-2 d-flex justify-content-center">
+              <div class="dropdown ">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="brandsel" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="true">
+                  Brand
+                </button>
+                <select class="dropdown-menu" aria-labelledby="brandsel" ng-model="selectBrand">
+                  <option class="dropdown-item" ng-repeat="b in brand" value="{{b.option}}">{{b.option}}</option>
+                </select>
+                <!-- <p>You selected: {{selectYear}}</p> -->
+              </div>
+            </div>
+    
+            <div class="col-3 p-0 m-0 col-lg-2  d-flex justify-content-center">
+              <div class="dropdown ">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="modelsel" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="true">
+                  model
+                </button>
+                <select class="dropdown-menu" aria-labelledby="modelsel" ng-model="selectmodel">
+                  <option class="dropdown-item" ng-repeat="b in model" value="{{b.option}}">{{b.option}}</option>
+                </select>
+                <!-- <p>You selected: {{selectmodel}}</p> -->
+              </div>
+            </div>
+    
+          </div>
+        </div>
+    
+    
+    <!-- filters implementattion -->
+    
+        <div class="content mb-2 mt-2 p-3 border"
+          ng-repeat="item in data|filter:search|orderBy:seletedFilter|limitTo:seletedlim|filter:selectYear|filter:selectBrand|filter:selectmodel"
+          id="i_ll_repeat">
+          <div class="row box-item">
+            <div class="col-md-6">
+              <img src='{{ item.image }}' class="img-thumbnail change_size_me" />
+            </div>
+            <div class="col-md-6">
+              <h3>Brand: {{item.Brand}}</h3>
+              <h6>Model: {{item.model}}</h6>
+              <h6>Price: {{item.price|myfilterCar:currencySelector}}</h6>
+              <span>Year: {{item.year}}</span>
+              <p>Description: {{item.description}}</p>
+              <a href="#" class="btn btn-dark">contact seller</a>
+            </div>
+          </div>
+        </div>
+        <!--  <hr class="divider"> -->
+      </div>
+
+</body>
+</html>
